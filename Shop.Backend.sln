@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B61542D5-89BD-4A97-B34A-C0F70EA29735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Shop.Domain\Shop.Domain.csproj", "{3C73C938-D2B7-4512-9699-009B6B3592F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Domain", "Shop.Domain\Shop.Domain.csproj", "{3C73C938-D2B7-4512-9699-009B6B3592F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "Shop.Application\Shop.Application.csproj", "{8E19ADAD-39A5-45C3-A475-8DFE0FD3424F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Application", "Shop.Application\Shop.Application.csproj", "{8E19ADAD-39A5-45C3-A475-8DFE0FD3424F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Database", "Shop.Database\Shop.Database.csproj", "{281C13FB-5E04-4BB2-BA08-35DCF1A643BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Database", "Shop.Database\Shop.Database.csproj", "{281C13FB-5E04-4BB2-BA08-35DCF1A643BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.WebApi", "Shop.WebApi\Shop.WebApi.csproj", "{B131E73E-7168-490E-85B1-A7FC35A0DD4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.WebApi", "Shop.WebApi\Shop.WebApi.csproj", "{B131E73E-7168-490E-85B1-A7FC35A0DD4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,5 +9,6 @@ namespace Shop.Domain.Models
         public string Description { get; set; }
         public Size Size { get; set; }
         public ushort Quantity { get; set; }
+        //public Image Image { get; set; }
     }
 }
