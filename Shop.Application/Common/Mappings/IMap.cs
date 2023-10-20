@@ -8,6 +8,5 @@ namespace Shop.Application.Common.Mappings
         {
             profile.CreateMap(typeof(T), GetType());
         }
-
     }
 }
