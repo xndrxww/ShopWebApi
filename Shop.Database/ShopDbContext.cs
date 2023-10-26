@@ -11,11 +11,6 @@ namespace Shop.Database
 
         public ShopDbContext(DbContextOptions<ShopDbContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("host=localhost;database=ShopDb;username=postgres;password=3232;"); //TODO временное решение
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ProductConfiguration());

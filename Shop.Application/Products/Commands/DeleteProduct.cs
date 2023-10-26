@@ -9,11 +9,11 @@ namespace Shop.Application.Products.Commands
         public Guid Id { get; set; }
     }
 
-    public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, Unit>
+    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Unit>
     {
         private readonly IShopDbContext _dbContext;
 
-        public DeleteProductHandler(IShopDbContext dbContext)
+        public DeleteProductCommandHandler(IShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
