@@ -11,6 +11,30 @@ namespace Shop.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddAutoMapper(config =>
+            {
+                config.AddProfile(new AssemblyMappingProfiles(Assembly.GetExecutingAssembly()));
+                config.AddProfile(new AssemblyMappingProfiles(typeof(IShopDbContext).Assembly));
+            });
+
+            builder.Services.AddApplication();
+            builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddControllers();
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assembly));
+            }
+            builder.Services.AddCors(option =>
+            {
+                //Для теста
+                option.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
+
             var app = builder.Build();
 
             app.MapGet("/", () => "Hello World!");
@@ -30,33 +54,14 @@ namespace Shop.WebApi
                 }
             }
 
-            builder.Services.AddAutoMapper(config =>
-            {
-                config.AddProfile(new AssemblyMappingProfiles(Assembly.GetExecutingAssembly()));
-                config.AddProfile(new AssemblyMappingProfiles(typeof(IShopDbContext).Assembly));
-            });
-
-            builder.Services.AddApplication();
-            builder.Services.AddPersistence(builder.Configuration);
-            builder.Services.AddCors(option =>
-            {
-                //Для теста
-                option.AddPolicy("AllowAll", policy =>
-                {
-                    policy.AllowAnyHeader();
-                    policy.AllowAnyMethod();
-                    policy.AllowAnyOrigin();
-                });
-            });
-
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
-            app.Run();
             app.UseEndpoints(endPoints =>
             {
                 endPoints.MapControllers();
             });
+            app.Run();
         }
     }
 }
