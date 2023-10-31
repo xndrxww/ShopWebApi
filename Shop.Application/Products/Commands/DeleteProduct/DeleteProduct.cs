@@ -2,7 +2,7 @@
 using Shop.Application.Common.Exceptions;
 using Shop.Application.Interfaces;
 
-namespace Shop.Application.Products.Commands
+namespace Shop.Application.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommand : IRequest<Unit>
     {

@@ -1,7 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Products.Commands;
+﻿using Microsoft.AspNetCore.Mvc;
+using Shop.Application.Products.Commands.CreateProduct;
+using Shop.Application.Products.Commands.DeleteProduct;
+using Shop.Application.Products.Commands.UpdateProduct;
 using Shop.Application.Products.Requests;
+using Shop.Application.Products.Requests.GetProduct;
 using Shop.Domain.Enums;
 using Shop.Domain.Models;
 

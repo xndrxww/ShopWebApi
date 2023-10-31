@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Shop.Application
 {
@@ -6,6 +8,7 @@ namespace Shop.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
             return services;
         }
     }

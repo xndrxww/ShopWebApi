@@ -4,7 +4,7 @@ using Shop.Application.Common.Exceptions;
 using Shop.Application.Interfaces;
 using Shop.Domain.Enums;
 
-namespace Shop.Application.Products.Commands
+namespace Shop.Application.Products.Commands.UpdateProduct
 {
     public class UpdateProductCommand : IRequest<Unit>
     {
@@ -38,7 +38,7 @@ namespace Shop.Application.Products.Commands
             product.Description = command.Description;
             product.Size = command.Size;
             product.Quantity = command.Quantity;
-            
+
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

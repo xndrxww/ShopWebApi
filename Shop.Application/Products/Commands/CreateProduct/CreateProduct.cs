@@ -3,7 +3,7 @@ using Shop.Application.Interfaces;
 using Shop.Domain.Enums;
 using Shop.Domain.Models;
 
-namespace Shop.Application.Products.Commands
+namespace Shop.Application.Products.Commands.CreateProduct
 {
     public class CreateProductCommand : IRequest<Guid>
     {

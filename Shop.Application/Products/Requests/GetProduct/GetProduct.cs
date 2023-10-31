@@ -4,7 +4,7 @@ using Shop.Application.Common.Exceptions;
 using Shop.Application.Interfaces;
 using Shop.Domain.Models;
 
-namespace Shop.Application.Products.Requests
+namespace Shop.Application.Products.Requests.GetProduct
 {
     public class GetProductRequest : IRequest<Product>
     {
