@@ -2,6 +2,7 @@ using Shop.Application;
 using Shop.Application.Common.Mappings;
 using Shop.Application.Interfaces;
 using Shop.Database;
+using Shop.WebApi.Middleware;
 using System.Reflection;
 
 namespace Shop.WebApi
@@ -54,6 +55,7 @@ namespace Shop.WebApi
                 }
             }
 
+            app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
