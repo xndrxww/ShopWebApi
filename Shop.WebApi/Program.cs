@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shop.Application;
 using Shop.Application.Common.Mappings;
 using Shop.Application.Interfaces;
@@ -35,6 +36,16 @@ namespace Shop.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+            builder.Services.AddAuthentication(config =>
+            {
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "http://localhost:5062";
+                options.Audience = "ShopWebAPI";
+                options.RequireHttpsMetadata = false;
+            });
 
             var app = builder.Build();
 
@@ -59,6 +70,8 @@ namespace Shop.WebApi
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endPoints =>
             {
                 endPoints.MapControllers();
