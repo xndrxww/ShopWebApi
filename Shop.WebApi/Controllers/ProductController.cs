@@ -10,9 +10,14 @@ using Shop.Domain.Models;
 
 namespace Shop.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class ProductController : BaseController
     {
+        /// <summary>
+        /// Получение списка товаров
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<List<Product>>> GetAll()
@@ -23,6 +28,10 @@ namespace Shop.WebApi.Controllers
             return Ok(productList);
         }
 
+        /// <summary>
+        /// Получение товара по id
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [Authorize]
         public async Task<ActionResult<Product>> Get(Guid id)
@@ -36,6 +45,10 @@ namespace Shop.WebApi.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Создание нового товара
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> Create(string title, string description, Size size, ushort quantity)
@@ -52,6 +65,10 @@ namespace Shop.WebApi.Controllers
             return Ok(productId);
         }
 
+        /// <summary>
+        /// Редактирование товара по id
+        /// </summary>
+        /// <returns></returns>
         [HttpPut]
         [Authorize]
         public async Task<IActionResult> Update(Guid id, string title, string description, Size size, ushort quantity)
@@ -69,6 +86,10 @@ namespace Shop.WebApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Удаление товара по id
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<IActionResult> Delete(Guid id)

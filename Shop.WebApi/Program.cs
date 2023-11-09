@@ -22,6 +22,12 @@ namespace Shop.WebApi
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
             builder.Services.AddControllers();
+            builder.Services.AddSwaggerGen(config =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
+            });
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
                 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assembly));
@@ -66,6 +72,12 @@ namespace Shop.WebApi
                 }
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "Shop API");
+            });
             app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
