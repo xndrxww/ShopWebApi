@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
+using Serilog.Events;
 using Shop.Application;
 using Shop.Application.Common.Mappings;
 using Shop.Application.Interfaces;
 using Shop.Database;
 using Shop.WebApi.Middleware;
+using Shop.WebApi.Services;
 using System.Reflection;
 
 namespace Shop.WebApi
@@ -13,6 +16,7 @@ namespace Shop.WebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Host.UseSerilog();
             builder.Services.AddAutoMapper(config =>
             {
                 config.AddProfile(new AssemblyMappingProfiles(Assembly.GetExecutingAssembly()));
@@ -22,6 +26,8 @@ namespace Shop.WebApi
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
             builder.Services.AddControllers();
+            builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddSwaggerGen(config =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -53,6 +59,11 @@ namespace Shop.WebApi
                 options.RequireHttpsMetadata = false;
             });
 
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .WriteTo.File("ShopWebApiLog-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             var app = builder.Build();
 
             app.MapGet("/", () => "Hello World!");
@@ -65,10 +76,9 @@ namespace Shop.WebApi
                     var context = serviceProvider.GetRequiredService<ShopDbContext>();
                     DbInitializer.Initialize(context);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    Log.Fatal(ex, "Ошибка произошла при инициализации приложения");
                 }
             }
 
