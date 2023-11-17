@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Products.Commands.CreateProduct;
 using Shop.Application.Products.Commands.DeleteProduct;
 using Shop.Application.Products.Commands.UpdateProduct;
@@ -19,7 +18,7 @@ namespace Shop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<List<Product>>> GetAll()
         {
             var request = new GetProductsListRequest();
@@ -33,7 +32,7 @@ namespace Shop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<Product>> Get(Guid id)
         {
             var request = new GetProductRequest
@@ -50,7 +49,7 @@ namespace Shop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult> Create(string title, string description, Size size, ushort quantity)
         {
             var command = new CreateProductCommand()
@@ -70,7 +69,7 @@ namespace Shop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Update(Guid id, string title, string description, Size size, ushort quantity)
         {
             var command = new UpdateProductCommand()
@@ -91,7 +90,7 @@ namespace Shop.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteProductCommand

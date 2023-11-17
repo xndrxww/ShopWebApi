@@ -1,22 +1,15 @@
 ﻿using Shop.Application.Products.Requests.GetProduct;
-using Shop.Database;
+using Shop.Tests.Common;
 using Shouldly;
 
 namespace Shop.Tests.Requests
 {
-    public class GetProductRequestHandlerTests
+    public class GetProductRequestHandlerTests : TestBase
     {
-        private readonly ShopDbContext _context;
-
-        public GetProductRequestHandlerTests(ShopDbContext context)
-        {
-            _context = context;
-        }
-
         [Fact]
         public async Task GetProductRequestHandler_Success()
         {
-            var handler = new GetProductRequestHandler(_context);
+            var handler = new GetProductRequestHandler(Context);
 
             var result = await handler.Handle(new GetProductRequest
             {

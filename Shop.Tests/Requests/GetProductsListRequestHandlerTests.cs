@@ -1,26 +1,19 @@
 ﻿using Shop.Application.Products.Requests;
-using Shop.Database;
+using Shop.Tests.Common;
 using Shouldly;
 
 namespace Shop.Tests.Requests
 {
-    public class GetProductsListRequestHandlerTests
+    public class GetProductsListRequestHandlerTests : TestBase
     {
-        private readonly ShopDbContext _context;
-
-        public GetProductsListRequestHandlerTests(ShopDbContext context)
-        {
-            _context = context;
-        }
-
         [Fact]
         public async void GetProductsListRequestHandler_Success()
         {
-            var handler = new GetProductsListRequestHandler(_context);
+            var handler = new GetProductsListRequestHandler(Context);
 
             var result = await handler.Handle(new GetProductsListRequest(), CancellationToken.None);
 
-            result.Count.ShouldBe(2);
+            result.Count.ShouldBe(4);
         }
     }
 }

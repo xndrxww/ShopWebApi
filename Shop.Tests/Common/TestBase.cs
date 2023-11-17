@@ -2,11 +2,11 @@
 
 namespace Shop.Tests.Common
 {
-    public abstract class TestCommandBase : IDisposable
+    public abstract class TestBase : IDisposable
     {
         protected readonly ShopDbContext Context;
 
-        protected TestCommandBase()
+        protected TestBase()
         {
             Context = ShopContextFactory.Create();
         }

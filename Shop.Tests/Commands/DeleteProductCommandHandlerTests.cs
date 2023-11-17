@@ -3,7 +3,7 @@ using Shop.Tests.Common;
 
 namespace Shop.Tests.Commands
 {
-    public class DeleteProductCommandHandlerTests : TestCommandBase
+    public class DeleteProductCommandHandlerTests : TestBase
     {
         [Fact]
         public async Task DeleteProductCommandHandler_Succeess()

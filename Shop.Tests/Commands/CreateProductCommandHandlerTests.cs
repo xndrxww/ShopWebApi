@@ -4,14 +4,14 @@ using Shop.Tests.Common;
 
 namespace Shop.Tests.Commands
 {
-    public class CreateProductCommandHandlerTests : TestCommandBase
+    public class CreateProductCommandHandlerTests : TestBase
     {
         [Fact]
         public async Task CreateProductCommandHandler_Success()
         {
             var handler = new CreateProductCommandHandler(Context);
-            var title = "Title";
-            var description = "Description";
+            var title = "title";
+            var description = "description";
             var quantity = 1;
             var size = Domain.Enums.Size.Large;
 
@@ -25,9 +25,9 @@ namespace Shop.Tests.Commands
                 }, CancellationToken.None);
 
             Assert.NotNull(await Context.Products.SingleOrDefaultAsync(product
-                => product.Id == productId && 
+                => product.Id == productId &&
                    product.Title == title &&
-                   product.Description == description && 
+                   product.Description == description &&
                    product.Quantity == quantity &&
                    product.Size == size));
         }

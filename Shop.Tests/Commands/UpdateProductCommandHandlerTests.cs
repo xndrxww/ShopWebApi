@@ -6,7 +6,7 @@ using Shop.Tests.Common;
 
 namespace Shop.Tests.Commands
 {
-    public class UpdateProductCommandHandlerTests : TestCommandBase
+    public class UpdateProductCommandHandlerTests : TestBase
     {
         [Fact]
         public async Task UpdateProductCommandHandler_Success()
